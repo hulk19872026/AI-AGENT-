@@ -150,6 +150,14 @@ app.get('/', (req, res) => {
   });
 });
 
+// 404 handler for unmatched routes
+app.use((req, res) => {
+  res.status(404).json({
+    error: 'Not Found',
+    message: `Route ${req.method} ${req.path} does not exist. Available endpoints: GET /, POST /webhook`
+  });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🥊 UFC AI Analyst Bot running on port ${PORT}`);
